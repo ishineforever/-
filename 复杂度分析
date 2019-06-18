@@ -19,3 +19,20 @@ for(i=1;i<n;i++)
 
 样例输出
 10 15
+
+
+#include <stdio.h>
+ 
+int main()
+{
+    int n;
+    while (scanf("%d",&n)!=EOF)
+    {
+        printf ("%lld ",((long long)(n-1)*(n-2)*(n-3)/6));
+        if(n>2)
+            printf ("%d\n",3*n-3);
+        else
+            puts("RANDOM");
+    }
+    return 0;
+}
