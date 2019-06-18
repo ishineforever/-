@@ -32,3 +32,16 @@
 提示
 如果你可以避免错误“Memory Limit Exceed”，这个问题将是一个非常简单的问题。
 
+#include <stdio.h>
+int main()
+{
+    int i,sum,n,a;
+    sum=0;
+    scanf ("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        scanf ("%d",&a);
+        sum^=a;
+    }
+    printf ("%d",sum);
+    return 0;
