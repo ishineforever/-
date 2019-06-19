@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+
+#define MAXSIZE 1000
+//typedef struct
+//{
+//	int key;
+//	char *otherinfo;
+//}ElemType;
+typedef struct
+{
+	/*ElemType */  int r[MAXSIZE];
+	int length;
+}Sqlist;
+
+void BinsertSort(Sqlist &L)
+{
+	int i,j,low,high,mid;
+	for (i=2;i<=L.length;i++)
+	{
+		L.r[0]=L.r[i];
+		low=1;high=i-1;
+		while(low<=high)
+		{
+			mid=(low+high)/2;
+		    if(L.r[i]<L.r[mid]) high=mid-1;
+		    else low=mid+1;
+		}
+		for(j=i-1;j>=high+1;j--) L.r[j+1]=L.r[j];
+		L.r[j+1]=L.r[0];
+	}
+}
+
+int main(void)
+{
+	Sqlist *L=new Sqlist;
+	int n,i;
+	cin>>n;
+	L->length=n;
+	for(i=1;i<=n;i++)
+	{
+		cin>>L->r[i];
+	}
+	BinsertSort(*L);
+	for(i=1;i<=n;i++)
+	{
+		cout<<L->r[i]<<" ";
+	}
+	cout<<endl;
+	return 0;
+}
