@@ -39,7 +39,7 @@ char change(char c)
 }
 int main()
 {
-    int i=0,j=0,k=0;
+    int i=-1,j=-1,k=0;
     sstring *S=(sstring *)malloc(sizeof (sstring));
     sstring *T=(sstring *)malloc(sizeof (sstring));
     memset (S->a," ",sizeof(S->a));
@@ -57,6 +57,38 @@ int main()
                }
                if(i==S->length) printf ("EQUAL");
 
+    }
+    else
+        printf ("NOT EQUAL");
+    return 0;
+}
+
+不用结构体数组解决方案
+
+#include <stdio.h>
+#define MAXSIZE 100
+
+char change(char c)
+{
+	if(c>='a' && c<='z')
+		return c-32;
+	return c;
+}
+int main()
+{
+    int i=0,j=0,k=-1,m=-1;
+    char S[MAXSIZE]={" "},T[MAXSIZE]={" "};
+    scanf("%s %s",&S,&T);
+    while (S[++k]);while (T[++m]);
+    if(k==m)
+    {
+        i=0;j=0;
+        while (i<k)
+               {
+                   if(change(T[j])==change(S[j]))  {++i;++j;}
+                   else {printf ("NOT EQUAL");break;}
+               }
+               if(i==k) printf ("EQUAL");
     }
     else
         printf ("NOT EQUAL");
