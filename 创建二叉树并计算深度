@@ -1,0 +1,153 @@
+问题 X: 创建二叉树并计算深度
+时间限制: 1 Sec  内存限制: 32 MB
+提交: 118  解决: 98
+[提交] [状态] [讨论版] [命题人:外部导入]
+题目描述
+编一个程序，读入用户输入的一串先序遍历字符串，根据此字符串建立一个二叉树（以指针方式存储）。
+例如如下的先序遍历字符串：
+ABC##DE#G##F###
+其中“#”表示的是空格，空格字符代表空树。建立起此二叉树以后，再计算二叉树的深度并输出。 
+
+
+下面提供代码框架，请同学完成指定的部分。 
+//算法5.3 先序遍历的的顺序建立二叉链表
+#include<iostream>
+#include<cstdlib>
+#include<cstdio>
+using namespace std;
+
+typedef char TElemType;
+//二叉树的二叉链表存储表示
+typedef struct BiTNode {
+   TElemType data;                      //结点数据域
+   struct BiTNode *lchild, *rchild; //左右孩子指针
+} BiTNode, *BiTree;
+
+void CreateBiTree(BiTree &T)
+{
+   //按先序次序输入二叉树中结点的值（一个字符），创建二叉链表表示的二叉树T
+   TElemType ch;
+
+   //此处和教材的不同是，要处理多组数据，输入ch如果遇到EOF，应该结束程序
+   //所以main函数用while(1)
+   if(!(cin >> ch)) exit(0);       //用此行替换教材上的语句：cin>>ch;   实现若输入遇到EOF（即-1）就退出，避免死循环。
+   /****在此下面完成代码***************/
+
+   /***********************************/
+}   //CreateBiTree
+
+//用算法5.5 计算二叉树的深度
+int Depth(BiTree T)
+{
+   //计算二叉树T的深度
+   /****在此下面完成代码***************/
+
+   /***********************************/
+}
+
+void DestroyBitree(BiTree& T)
+{
+   /****在此下面完成代码***************/
+
+   /***********************************/
+}
+
+int main()
+{
+   BiTree tree;
+   while(1) {
+      CreateBiTree(tree);
+      cout << Depth(tree);
+      cout << endl;
+      DestroyBitree(tree);
+   }
+}
+
+输入
+输入有多组测试数据。 
+每组数据为一行字符串，长度不超过100。  
+
+输出
+可能有多组测试数据，对于每组数据，
+输出对应二叉树的深度。
+每个输出结果占一行。 
+
+样例输入
+a#b#cdef#####
+a##
+
+样例输出
+6
+1 
+
+#include<iostream>
+#include<cstdlib>
+#include<cstdio>
+using namespace std;
+
+typedef char TElemType;
+//二叉树的二叉链表存储表示
+typedef struct BiTNode {
+   TElemType data;                      //结点数据域
+   struct BiTNode *lchild, *rchild; //左右孩子指针
+} BiTNode, *BiTree;
+
+void CreateBiTree(BiTree &T)
+{
+   //按先序次序输入二叉树中结点的值（一个字符），创建二叉链表表示的二叉树T
+   TElemType ch;
+
+   //此处和教材的不同是，要处理多组数据，输入ch如果遇到EOF，应该结束程序
+   //所以main函数用while(1)
+   if(!(cin >> ch)) exit(0);       //用此行替换教材上的语句：cin>>ch;   实现若输入遇到EOF（即-1）就退出，避免死循环。
+   /****在此下面完成代码***************/
+   if(ch=='#')  T=NULL;
+   else
+   {
+       T=new BiTNode;
+       T->data=ch;
+       CreateBiTree(T->lchild);
+       CreateBiTree(T->rchild);
+   }
+   /***********************************/
+}   //CreateBiTree
+
+//用算法5.5 计算二叉树的深度
+int Depth(BiTree T)
+{
+   //计算二叉树T的深度
+   /****在此下面完成代码***************/
+   int m,n;
+   if(!T) return 0;
+   else
+   {
+       m=Depth(T->lchild);
+       n=Depth(T->rchild);
+       if(m>n)  return m+1;
+       else     return n+1;
+   }
+   /***********************************/
+}
+
+void DestroyBitree(BiTree& T)
+{
+   /****在此下面完成代码***************/
+    if(T)
+    {
+        DestroyBitree(T->lchild);
+        DestroyBitree(T->rchild);
+        delete T;
+    }
+   /***********************************/
+}
+
+int main()
+{
+   BiTree tree;
+   while(1) {
+      CreateBiTree(tree);
+      cout << Depth(tree);
+      cout << endl;
+      DestroyBitree(tree);
+   }
+}
